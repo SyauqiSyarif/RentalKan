@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Rental.css";
@@ -103,7 +102,7 @@ function Rental() {
 
         {confirmed && (
           <p className="rental-success">
-            Penyewaan berhasil! <Link to="/my-rentals">Lihat My Rentals</Link>
+            Penyewaan berhasil! <Link to="/my-rentals">Lihat di Bookings</Link>
           </p>
         )}
       </div>
