@@ -497,40 +497,56 @@
   }
 }
 
-
 .payment-copy-row {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  justify-content: center;
+  min-height: 36px;
   margin: 8px 0;
+  padding: 0 42px;
 }
 
-.payment-copy-row strong {
+.payment-destination .payment-copy-row strong {
+  display: block;
+  margin: 0;
+  color: #399b76;
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 0.5px;
   overflow-wrap: anywhere;
 }
 
-.payment-copy-button {
-  flex-shrink: 0;
-  padding: 8px 14px;
+.payment-destination .payment-copy-button {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
   border: 1px solid #b7dfce;
   border-radius: 8px;
   background: #eaf7f0;
   color: #245e46;
-  font: inherit;
-  font-size: 13px;
-  font-weight: 600;
   cursor: pointer;
   transition: 0.2s ease;
 }
 
-.payment-copy-button:hover {
+.payment-destination .payment-copy-button:hover {
   background: #d5f0e3;
 }
 
-.payment-copy-error {
-  display: block;
-  margin-bottom: 8px;
-  color: #c0392b;
-  font-size: 12px;
+.payment-copy-button svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }

@@ -240,6 +240,16 @@ function MyRentals() {
                     <button
                       type="button"
                       className="payment-copy-button"
+                      title={
+                        copiedPayment === "mandiri"
+                          ? "Tersalin"
+                          : "Salin nomor rekening"
+                      }
+                      aria-label={
+                        copiedPayment === "mandiri"
+                          ? "Tersalin"
+                          : "Salin nomor rekening"
+                      }
                       onClick={() =>
                         copyPaymentNumber(
                           "1234567890123",
@@ -247,9 +257,22 @@ function MyRentals() {
                         )
                       }
                     >
-                      {copiedPayment === "mandiri"
-                        ? "Tersalin ✓"
-                        : "Salin"}
+                      {copiedPayment === "mandiri" ? (
+                        <svg viewBox="0 0 24 24">
+                          <path d="M5 12l5 5L20 7" />
+                        </svg>
+                      ) : (
+                        <svg viewBox="0 0 24 24">
+                          <rect
+                            x="8"
+                            y="8"
+                            width="13"
+                            height="13"
+                            rx="2"
+                          />
+                          <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3" />
+                        </svg>
+                      )}
                     </button>
                   </div>
 
@@ -271,6 +294,16 @@ function MyRentals() {
                     <button
                       type="button"
                       className="payment-copy-button"
+                      title={
+                        copiedPayment === "ewallet"
+                          ? "Tersalin"
+                          : "Salin nomor e-wallet"
+                      }
+                      aria-label={
+                        copiedPayment === "ewallet"
+                          ? "Tersalin"
+                          : "Salin nomor e-wallet"
+                      }
                       onClick={() =>
                         copyPaymentNumber(
                           "0812334456",
@@ -278,9 +311,22 @@ function MyRentals() {
                         )
                       }
                     >
-                      {copiedPayment === "ewallet"
-                        ? "Tersalin ✓"
-                        : "Salin"}
+                      {copiedPayment === "ewallet" ? (
+                        <svg viewBox="0 0 24 24">
+                          <path d="M5 12l5 5L20 7" />
+                        </svg>
+                      ) : (
+                        <svg viewBox="0 0 24 24">
+                          <rect
+                            x="8"
+                            y="8"
+                            width="13"
+                            height="13"
+                            rx="2"
+                          />
+                          <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3" />
+                        </svg>
+                      )}
                     </button>
                   </div>
 
