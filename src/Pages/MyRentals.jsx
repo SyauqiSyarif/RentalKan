@@ -15,7 +15,7 @@ function MyRentals() {
         .map((item) => ({
           ...item,
           status:
-            item.status === "Lunas (Simulasi)" ||
+            item.status === "Lunas" ||
             item.status === "Menunggu Konfirmasi Pembayaran"
               ? "Lunas"
               : item.status || "Menunggu Pembayaran",
