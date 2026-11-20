@@ -28,6 +28,34 @@ function MyRentals() {
   const [activePayment, setActivePayment] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState("Mandiri");
   const [activeAction, setActiveAction] = useState(null);
+  const [copiedPayment, setCopiedPayment] = useState("");
+
+  async function copyPaymentNumber(number, type) {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(number);
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = number;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+
+        document.body.appendChild(textArea);
+        textArea.select();
+
+        const success = document.execCommand("copy");
+        document.body.removeChild(textArea);
+
+        if (!success) {
+          throw new Error("Gagal menyalin nomor");
+        }
+      }
+
+      setCopiedPayment(type);
+    } catch {
+      setCopiedPayment(`error-${type}`);
+    }
+  }
 
   function saveRentals(updated) {
     setRentals(updated);
@@ -124,6 +152,7 @@ function MyRentals() {
                   onClick={() => {
                     setActivePayment(item.id);
                     setPaymentMethod("Mandiri");
+                    setCopiedPayment("");
                   }}
                 >
                   Bayar Pesanan
@@ -191,27 +220,76 @@ function MyRentals() {
 
             <select
               value={paymentMethod}
-              onChange={(e) => setPaymentMethod(e.target.value)}
+              onChange={(e) => {
+                setPaymentMethod(e.target.value);
+                setCopiedPayment("");
+              }}
             >
               <option value="Mandiri">Transfer Bank Mandiri</option>
               <option value="E-Wallet">E-Wallet</option>
             </select>
 
-            <span className="eyebrow payment-example">
-              CONTOH TUJUAN PEMBAYARAN
-            </span>
-
             <div className="payment-destination">
               {paymentMethod === "Mandiri" ? (
                 <>
                   <span>Bank Mandiri</span>
-                  <strong>1234567890123</strong>
+
+                  <div className="payment-copy-row">
+                    <strong>1234567890123</strong>
+
+                    <button
+                      type="button"
+                      className="payment-copy-button"
+                      onClick={() =>
+                        copyPaymentNumber(
+                          "1234567890123",
+                          "mandiri"
+                        )
+                      }
+                    >
+                      {copiedPayment === "mandiri"
+                        ? "Tersalin ✓"
+                        : "Salin"}
+                    </button>
+                  </div>
+
+                  {copiedPayment === "error-mandiri" && (
+                    <small className="payment-copy-error">
+                      Gagal menyalin. Silakan salin nomor secara manual.
+                    </small>
+                  )}
+
                   <p>Nama Penerima: RENTALKAN</p>
                 </>
               ) : (
                 <>
                   <span>Nomor E-Wallet</span>
-                  <strong>0812334456</strong>
+
+                  <div className="payment-copy-row">
+                    <strong>0812334456</strong>
+
+                    <button
+                      type="button"
+                      className="payment-copy-button"
+                      onClick={() =>
+                        copyPaymentNumber(
+                          "0812334456",
+                          "ewallet"
+                        )
+                      }
+                    >
+                      {copiedPayment === "ewallet"
+                        ? "Tersalin ✓"
+                        : "Salin"}
+                    </button>
+                  </div>
+
+                  {copiedPayment === "error-ewallet" && (
+                    <small className="payment-copy-error">
+                      Gagal menyalin. Silakan salin nomor secara manual.
+                    </small>
+                  )}
+
                   <p>Nama Penerima: RENTALKAN</p>
                 </>
               )}

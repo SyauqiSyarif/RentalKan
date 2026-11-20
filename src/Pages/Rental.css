@@ -496,3 +496,41 @@
     padding: 30px 22px;
   }
 }
+
+
+.payment-copy-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 8px 0;
+}
+
+.payment-copy-row strong {
+  overflow-wrap: anywhere;
+}
+
+.payment-copy-button {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border: 1px solid #b7dfce;
+  border-radius: 8px;
+  background: #eaf7f0;
+  color: #245e46;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.payment-copy-button:hover {
+  background: #d5f0e3;
+}
+
+.payment-copy-error {
+  display: block;
+  margin-bottom: 8px;
+  color: #c0392b;
+  font-size: 12px;
+}
